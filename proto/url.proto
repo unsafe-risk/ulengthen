@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+option go_package="github.com/unsafe-risk/ulengthen/proto";
+package proto;
+
+message URLInfo {
+    string url = 10;
+
+    bool require_captcha = 20;
+
+    bool require_password = 30;
+    optional EncryptedURLInfo encrypted_url = 40;
+}
+
+
+message EncryptedURLInfo {
+    bytes encrypted_url = 10;
+    bytes password_salt = 20;
+}
+
+enum HashAlgorithm {
+    Argon2ID_v1 = 0;
+}
