@@ -1,6 +1,7 @@
 package main
 
 import (
+	"embed"
 	"encoding/base32"
 	"encoding/json"
 	"fmt"
@@ -31,9 +32,10 @@ func main() {
 			box = vbox.NewBlackBox([]byte(secretKey))
 		}
 	}
-
+	h := &URLLengthenerHandler{}
+	h.Init()
 	srv := http.Server{
-		Handler: &URLLengthenerHandler{},
+		Handler: h,
 	}
 	ln, err := net.Listen("tcp", envaddr.Get(":8080"))
 	if err != nil {
@@ -56,12 +58,20 @@ func main() {
 	}
 }
 
+//go:embed public index.html
+var publicFS embed.FS
+
 type URLLengthenerHandler struct {
-	urlbufpool bytebufferpool.Pool
+	urlbufpool       bytebufferpool.Pool
+	publicFileServer http.Handler
 }
 
 var URLEncoding = base32.NewEncoding("0123456789ABCDEFGHJKNOPQRSTUVXYZ").
 	WithPadding(base32.NoPadding)
+
+func (h *URLLengthenerHandler) Init() {
+	h.publicFileServer = http.FileServer(http.FS(publicFS))
+}
 
 func (h *URLLengthenerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "OPTIONS" {
@@ -80,6 +90,8 @@ func (h *URLLengthenerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 	path := r.URL.Path
 	switch path {
 	case "/", "":
+		h.publicFileServer.ServeHTTP(w, r)
+		return
 	case "/new", "/new/":
 		if r.Method != "POST" {
 			http.Error(w, "Method not allowed, Use POST", http.StatusMethodNotAllowed)
@@ -125,15 +137,20 @@ func (h *URLLengthenerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 			return
 		}
 	default:
+		if strings.HasPrefix(path, "/public/") {
+			h.publicFileServer.ServeHTTP(w, r)
+			return
+		}
+
 		TrimmedPath := strings.TrimPrefix(path, "/")
 		decoded, err := URLEncoding.DecodeString(TrimmedPath)
 		if err != nil {
-			http.Error(w, err.Error(), http.StatusBadRequest)
+			http.Error(w, "Not found", http.StatusNotFound)
 			return
 		}
 		decrypted, ok := box.OpenOverWrite(decoded)
 		if !ok {
-			http.Error(w, "Invalid link", http.StatusBadRequest)
+			http.Error(w, "Not found", http.StatusNotFound)
 			return
 		}
 

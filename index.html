@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Lengthen your URLs with blazing fast URL lengthening">
+    <meta property="og:title" content="Blazing Fast URL Lengthener">
+    <meta property="og:image" content="https://cdn.statically.io/og/theme=dark/Blazing%20Fast%20URL%20Lengthener.jpg">
+    <link rel="stylesheet" href="/public/main.css">
+    <title>Blazing Fast URL Lengthener</title>
+</head>
+<body>
+    <div class="container">
+        <h1>Blazing Fast URL Lengthener</h1>
+
+        <p>
+            Lengthen your URLs with blazing fast URL lengthening.
+        </p>
+
+        <form id="lengthen-form">
+            <input type="text" name="url" id="lengthen-form-url" placeholder="Enter URL to lengthen">
+            <input type="submit" value="Lengthen!">
+        </form>
+        <div id="lengthen-result-box" hidden>
+            <br>
+            <input type="text" id="lengthen-result" readonly>
+            <button id="copy-button">Copy</button>
+        </div>
+    </div>
+
+    <script src="/public/main.js"></script>
+</body>
+</html>

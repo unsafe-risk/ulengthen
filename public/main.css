@@ -1,0 +1,19 @@
+html {
+  display: block;
+}
+
+.container {
+  width: 600px;
+  margin: 5em auto;
+  padding: 2em;
+  background: #aaa;
+
+  border-radius: 0.5em;
+}
+
+@media (max-width: 700px) {
+  .container {
+    margin: 0 auto;
+    width: auto;
+  }
+}
