@@ -58,7 +58,6 @@ func main() {
 
 type URLLengthenerHandler struct {
 	urlbufpool bytebufferpool.Pool
-	encbufpool bytebufferpool.Pool
 }
 
 var URLEncoding = base32.NewEncoding("0123456789ABCDEFGHJKNOPQRSTUVXYZ").
@@ -112,29 +111,19 @@ func (h *URLLengthenerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request)
 		e := box.Seal(urlbuf.B)
 		h.urlbufpool.Put(urlbuf)
 
-		encbuf := h.encbufpool.Get()
-		l := URLEncoding.EncodedLen(len(e))
-		if l > cap(encbuf.B) {
-			encbuf.B = make([]byte, l)
-		}
-		encbuf.B = encbuf.B[:l]
-		URLEncoding.Encode(encbuf.B, e)
-
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusOK)
 		type Response struct {
 			Data string `json:"data"`
 		}
 		resp := Response{
-			Data: string(urlbuf.B),
+			Data: URLEncoding.EncodeToString(e),
 		}
 		err = json.NewEncoder(w).Encode(&resp)
 		if err != nil {
-			h.encbufpool.Put(encbuf)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
-		h.encbufpool.Put(encbuf)
 	default:
 		TrimmedPath := strings.TrimPrefix(path, "/")
 		decoded, err := URLEncoding.DecodeString(TrimmedPath)
