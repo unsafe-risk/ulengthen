@@ -5,6 +5,7 @@ package proto;
 
 message URLInfo {
     string url = 10;
+    uint64 timestamp = 11;
 
     bool require_captcha = 20;
 

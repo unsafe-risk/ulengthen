@@ -85,6 +85,11 @@ func (m *URLInfo) MarshalToSizedBufferVT(dAtA []byte) (int, error) {
 		i--
 		dAtA[i] = 0xa0
 	}
+	if m.Timestamp != 0 {
+		i = encodeVarint(dAtA, i, uint64(m.Timestamp))
+		i--
+		dAtA[i] = 0x58
+	}
 	if len(m.Url) > 0 {
 		i -= len(m.Url)
 		copy(dAtA[i:], m.Url)
@@ -208,6 +213,9 @@ func (m *URLInfo) SizeVT() (n int) {
 	if l > 0 {
 		n += 1 + l + sov(uint64(l))
 	}
+	if m.Timestamp != 0 {
+		n += 1 + sov(uint64(m.Timestamp))
+	}
 	if m.RequireCaptcha {
 		n += 3
 	}
@@ -311,6 +319,25 @@ func (m *URLInfo) UnmarshalVT(dAtA []byte) error {
 			}
 			m.Url = string(dAtA[iNdEx:postIndex])
 			iNdEx = postIndex
+		case 11:
+			if wireType != 0 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Timestamp", wireType)
+			}
+			m.Timestamp = 0
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflow
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				m.Timestamp |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
 		case 20:
 			if wireType != 0 {
 				return fmt.Errorf("proto: wrong wireType = %d for field RequireCaptcha", wireType)
