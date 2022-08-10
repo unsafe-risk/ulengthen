@@ -2,8 +2,9 @@ FROM golang:1.19-alpine as build
 WORKDIR /build
 COPY . .
 
-RUN go build -ldflags "-s -w" -o /app.exe .
+RUN go mod download
+RUN CGO_ENABLED=0 go build -ldflags "-s -w" -o /app.exe .
 
-FROM scratch
-COPY --from=build /app.exe /app.exe
+FROM gcr.io/distroless/static-debian11
+COPY --from=build /app.exe /
 ENTRYPOINT ["/app.exe"]
