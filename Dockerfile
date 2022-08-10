@@ -5,5 +5,5 @@ COPY . .
 RUN go build -ldflags "-s -w" -o /app.exe .
 
 FROM scratch
-COPY --from=build /app.exe .
+COPY --from=build /app.exe /app.exe
 ENTRYPOINT ["/app.exe"]
