@@ -7,6 +7,8 @@ github.com/lemon-mint/godotenv v1.0.3 h1:wJBuGdp5eez/ycl9c8502qLj1RBPRHLDHTR6eoD
 github.com/lemon-mint/godotenv v1.0.3/go.mod h1:hBLJjPZkQ2QMrEwirLCQ+tRkWBKufZ1VxoqpZixGUYo=
 github.com/lemon-mint/vbox v1.3.1 h1:G0be4//BLjT7ely5z0vn8/rBR8Gt7ntbCVeAGuDMRI0=
 github.com/lemon-mint/vbox v1.3.1/go.mod h1:wBZxusOXtpAcBV0uAPk0KwBZiQKE82QhPxowJ7hN8io=
+github.com/lemon-mint/vbox v1.3.2 h1:XMfsYy4vF4iHbhoN68FeavkqV6p2U2R4XwFkUhlD/10=
+github.com/lemon-mint/vbox v1.3.2/go.mod h1:eP2WYG8X3w5kBebRmOv5xkUPV29SDMksGITY9hWQYCE=
 github.com/valyala/bytebufferpool v1.0.0 h1:GqA5TC/0021Y/b9FG4Oi9Mr3q7XYx6KllzawFIhcdPw=
 github.com/valyala/bytebufferpool v1.0.0/go.mod h1:6bBcMArwyJ5K/AmCkWv1jt77kVWyCJ6HpOuEn7z0Csc=
 golang.org/x/crypto v0.0.0-20220722155217-630584e8d5aa h1:zuSxTR4o9y82ebqCUJYNGJbGPo6sKVl54f/TVDObg1c=
@@ -15,6 +17,8 @@ golang.org/x/crypto v0.0.0-20220817201139-bc19a97f63c8 h1:GIAS/yBem/gq2MUqgNIzUH
 golang.org/x/crypto v0.0.0-20220817201139-bc19a97f63c8/go.mod h1:IxCIyHEi3zRg3s0A5j5BB6A9Jmi73HwBIUl50j+osU4=
 golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664 h1:v1W7bwXHsnLLloWYTVEdvGvA7BHMeBYsPcF0GLDxIRs=
 golang.org/x/sys v0.0.0-20220808155132-1c4a2a72c664/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
+golang.org/x/sys v0.0.0-20220823224334-20c2bfdbfe24 h1:TyKJRhyo17yWxOMCTHKWrc5rddHORMlnZ/j57umaUd8=
+golang.org/x/sys v0.0.0-20220823224334-20c2bfdbfe24/go.mod h1:oPkhp1MJrh7nUepCBck5+mAzfO9JrbApNNgaTdGDITg=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543 h1:E7g+9GITq07hpfrRu66IVDexMakfv52eLZ2CXBWiKr4=
 golang.org/x/xerrors v0.0.0-20191204190536-9bdfabe68543/go.mod h1:I/5z698sn9Ka8TeJc9MKroUUfqBBauWjQqLJ2OPfmY0=
 google.golang.org/protobuf v1.26.0-rc.1/go.mod h1:jlhhOSvTdKEhbULTjvd4ARK9grFBp09yW+WbY/TyQbw=
