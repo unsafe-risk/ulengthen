@@ -75,13 +75,13 @@ func (h *URLLengthenerHandler) Init() {
 
 func (h *URLLengthenerHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	if r.Method == "OPTIONS" {
-		req := r.Header.Get("Access-Control-Request-Method")
-		if req != "" {
-			w.Header().Set("Access-Control-Allow-Methods", req)
+		MethodReq := r.Header.Get("Access-Control-Request-Method")
+		if MethodReq != "" {
+			w.Header().Set("Access-Control-Allow-Methods", MethodReq)
 		}
-		req = r.Header.Get("Access-Control-Request-Headers")
-		if req != "" {
-			w.Header().Set("Access-Control-Allow-Headers", req)
+		HeadersReq := r.Header.Get("Access-Control-Request-Headers")
+		if HeadersReq != "" {
+			w.Header().Set("Access-Control-Allow-Headers", HeadersReq)
 		}
 		w.Header().Set("Access-Control-Allow-Origin", r.Header.Get("Origin"))
 		w.Header().Set("Access-Control-Allow-Credentials", "true")
