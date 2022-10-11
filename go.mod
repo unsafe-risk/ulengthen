@@ -9,7 +9,7 @@ require (
 	github.com/lemon-mint/godotenv v1.0.3
 	github.com/lemon-mint/vbox v1.3.2
 	github.com/valyala/bytebufferpool v1.0.0
-	golang.org/x/crypto v0.0.0-20220829220503-c86fa9a7ed90
+	golang.org/x/crypto v0.0.0-20221010152910-d6f0a8c073c2
 	google.golang.org/protobuf v1.28.1
 )
 
