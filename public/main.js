@@ -22,6 +22,7 @@
                 if (url.endsWith('/')) {
                     url = url.substring(0, url.length - 1);
                 }
+                url = punycode.toUnicode(url); // convert punycode to unicode
                 url += '/' + response.data;
                 result.value = url;
             }
