@@ -16,6 +16,6 @@ jobs:
 
     - name: ko build
       env:
-        KO_DOCKER_REPO: ghcr.io/lemon-mint
+        KO_DOCKER_REPO: ghcr.io/unsafe-risk
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: ko build --platform=all -B .
