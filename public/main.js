@@ -39,6 +39,12 @@
                 document.execCommand('copy');
             }
         }
+
+        const clear_button = document.getElementById('clear-button');
+        clear_button.onclick = function (e) {
+            document.getElementById('lengthen-result-box').hidden = true;
+            document.getElementById('lengthen-form-url').value = '';
+        }
     }
 
     main();
