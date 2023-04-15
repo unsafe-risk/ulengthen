@@ -1,0 +1,21 @@
+name: Image CI
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+    - uses: actions/checkout@v3
+    - uses: imjasonh/setup-ko@v0.6
+
+    - name: ko build
+      env:
+        KO_DOCKER_REPO: ghcr.io/lemon-mint
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: ko build --platform=all -B .
