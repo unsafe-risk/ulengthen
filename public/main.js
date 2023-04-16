@@ -18,12 +18,16 @@
                 const response = JSON.parse(xhr.responseText);
                 document.getElementById('lengthen-result-box').hidden = false;
                 const result = document.getElementById('lengthen-result');
-                let url = window.location.href.split('?')[0].split('#')[0];
-                if (url.endsWith('/')) {
-                    url = url.substring(0, url.length - 1);
+                let protocol = location.protocol;
+                let host = location.host;
+                let pathname = location.pathname;
+                host = punycode.toUnicode(host); // convert punycode to unicode
+                if (pathname === '/') {
+                    pathname = '';
+                } else if (!pathname.endsWith('/')) {
+                    pathname += '/';
                 }
-                url = punycode.toUnicode(url); // convert punycode to unicode
-                url += '/' + response.data;
+                let url = protocol + '//' + host + "/" + pathname + response.data;
                 result.value = url;
             }
 
