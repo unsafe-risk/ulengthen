@@ -11,7 +11,7 @@ jobs:
       packages: write
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
     - uses: imjasonh/setup-ko@v0.6
 
     - name: ko build
