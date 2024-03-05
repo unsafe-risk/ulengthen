@@ -10,7 +10,7 @@ require (
 	github.com/lemon-mint/vbox v1.3.2
 	github.com/valyala/bytebufferpool v1.0.0
 	golang.org/x/crypto v0.8.0
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.33.0
 )
 
 require golang.org/x/sys v0.7.0 // indirect
