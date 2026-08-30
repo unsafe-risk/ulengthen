@@ -1,6 +1,6 @@
 module github.com/unsafe-risk/ulengthen
 
-go 1.19
+go 1.23
 
 // +heroku goVersion go1.18
 
@@ -10,7 +10,7 @@ require (
 	github.com/lemon-mint/vbox v1.3.2
 	github.com/valyala/bytebufferpool v1.0.0
 	golang.org/x/crypto v0.8.0
-	google.golang.org/protobuf v1.30.0
+	google.golang.org/protobuf v1.36.12
 )
 
 require golang.org/x/sys v0.7.0 // indirect
